@@ -8,7 +8,7 @@ import software.amazon.awssdk.regions.Region
 object LocalstackContainer {
   def start(): LocalstackConfig =
     val container =
-      new LocalStackContainer("localstack/localstack-pro:2026.04.0")
+      new LocalStackContainer("localstack/localstack-pro:2026.03.0")
         .withServices("rds")
         .withExposedPorts(4510, 4566, 5432)
         .withEnv(

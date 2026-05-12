@@ -33,12 +33,11 @@ object PostgresDataSource {
 
     // Configure SSL.
     targetDataSourceProps.setProperty("ssl", "true")
-    targetDataSourceProps.setProperty("sslmode", "require")
+    targetDataSourceProps.setProperty("sslmode", "allow")
     targetDataSourceProps.setProperty(
       "sslfactory",
       classOf[LibPQFactory].getCanonicalName
     )
-    targetDataSourceProps.setProperty("channelBinding", "prefer")
 
     // Return the configured DataSource.
     dataSource
