@@ -4,7 +4,6 @@ import java.util.Properties
 import javax.sql.DataSource
 import org.postgresql.ds.PGSimpleDataSource
 import software.amazon.jdbc.ds.AwsWrapperDataSource
-import org.postgresql.ssl.LibPQFactory
 
 object PostgresDataSource {
   def make(config: PostgresConfig): DataSource =
@@ -32,13 +31,9 @@ object PostgresDataSource {
     dataSource.setPassword(config.password)
 
     // Configure SSL.
-    targetDataSourceProps.setProperty("ssl", "true")
-    targetDataSourceProps.setProperty("sslmode", "require")
-    targetDataSourceProps.setProperty(
-      "sslfactory",
-      classOf[LibPQFactory].getCanonicalName
-    )
-    targetDataSourceProps.setProperty("channelBinding", "prefer")
+    targetDataSourceProps.setProperty("ssl", "false")
+    targetDataSourceProps.setProperty("sslmode", "disable")
+    targetDataSourceProps.setProperty("channelBinding", "disable")
 
     // Return the configured DataSource.
     dataSource
